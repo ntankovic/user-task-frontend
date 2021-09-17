@@ -71,7 +71,7 @@ export default {
 
             //Post data to the engine
             var rawRes = await fetch(
-                `http://0.0.0.0:8080/instance/${this.$route.params.instance}/task/${this.$route.params.task}/form`,
+                `${process.env.VUE_APP_BPMN_SERVER}/instance/${this.$route.params.instance}/task/${this.$route.params.task}/form`,
                 {
                     method: 'POST',
                     body: JSON.stringify(data),
@@ -176,7 +176,7 @@ export default {
     },
     async created() {
         //Check if the form task is current task on the engine
-        await fetch(`http://0.0.0.0:8080/instance/${this.$route.params.instance}`, {
+        await fetch(`${process.env.VUE_APP_BPMN_SERVER}/instance/${this.$route.params.instance}`, {
             method: 'GET',
         })
             .then((res) => {
@@ -191,7 +191,7 @@ export default {
             });
         //Get User Task information
         let get_engine_response = await fetch(
-            `http://0.0.0.0:8080/instance/${this.$route.params.instance}/task/${this.$route.params.task}`,
+            `${process.env.VUE_APP_BPMN_SERVER}/instance/${this.$route.params.instance}/task/${this.$route.params.task}`,
             {
                 method: 'GET',
             }
