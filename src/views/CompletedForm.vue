@@ -10,13 +10,13 @@
             <div v-if="formSuccess">
                 <h3>
                     <!-- Message if everything went OK with calling BPMN engine-->
-                    Forma je uspješno poslana na BPMN server. Pratite mail ili Slack da znate kad dođe red da ispunite sljedeću formu.
+                    Podaci su uspješno spremljeni. Pratite mail/Slack za daljnje korake.
                 </h3>
             </div>
             <div v-else>
                 <h3>
                     <!--Message for problems with BPMN engine-->
-                    Trenutno postoje problemi s BPMN serverom. Morat će te kasnije ponovo ispuniti formu.
+                    Trenutno postoje problemi sa serverom. Morat ćete kasnije ponovo ispuniti formu.
                 </h3>
             </div>
         </div>
@@ -25,26 +25,23 @@
 
 <script>
 export default {
-    name:"CompletedForm",
-    data(){
-        return{
-            wrongUrl:false,
-            formSuccess:false
+    name: 'CompletedForm',
+    data() {
+        return {
+            wrongUrl: false,
+            formSuccess: false,
+        };
+    },
+    created() {
+        if (this.$route.params.type === 'ok') {
+            this.formSuccess = true;
+        } else if (this.$route.params.type === 'error') {
+            this.formSuccess = false;
+        } else {
+            this.wrongUrl = true;
         }
     },
-    created(){
-        if (this.$route.params.type === "ok"){
-            this.formSuccess = true
-        }else if (this.$route.params.type === "error"){
-            this.formSuccess = false
-        }else{
-            this.wrongUrl = true
-        }
-    }
-
-}
+};
 </script>
 
-<style>
-
-</style>
+<style></style>
